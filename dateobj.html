@@ -10,20 +10,39 @@
 
 <body>
   <script>
+    function getDates(start, end) {
+      let dates = []
+      let currentDate = start
+      while (currentDate <= end) {
+        dates.push(new Date(currentDate))
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+      return dates;
+    }
+
+    let dates = getDates(new Date("2022-11-11"), new Date("2022-11-21"));
+
     let data = []
-    let dates = 8
+    // let dates = 8
     let assigns = [
       { A: 'Off', B: 'Morning', C: 'Night', D: 'Off' },
+      { A: 'Off', B: 'Morning', C: 'Night', D: 'Off' },
+      { A: 'Morning', B: 'Off', C: 'Off', D: 'Night' },
       { A: 'Morning', B: 'Off', C: 'Off', D: 'Night' },
       { A: 'Off', B: 'Night', C: 'Morning', D: 'Off' },
+      { A: 'Off', B: 'Night', C: 'Morning', D: 'Off' },
+      { A: 'Night', B: 'Off', C: 'Off', D: 'Morning' },
       { A: 'Night', B: 'Off', C: 'Off', D: 'Morning' },
     ]
-    let count = 4
+    let count = 8
 
-    for (let i = 0; i < dates; i++) {
-      for (let j = 0; j < 4; j++) {
-        if (j % count < 4) {
-          data.push(assigns[j])
+    for (let i = 0; i < (dates.length); i++) {
+      for (let j = 0; j < 8; j++) {
+        if (data.length >= dates.length) {
+          break
+        }
+        if (j % count < 8) {
+          data.push({assign: assigns[j], date : dates[i+j]})          
         }
       }
     }
